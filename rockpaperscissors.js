@@ -3,8 +3,7 @@ let log = console.log;
 log("Hello World");
 
 
-let humanScore = 0;
-let computerScore = 0;
+playGame(5);
 
 
 // returns option for computer player
@@ -43,40 +42,74 @@ function getHumanChoice() {
 
 // plays a round of rock paper scissors
 // parameters: humanChoice, computerChoice
+// returns: 1 if player wins, -1 if computer wins, 0 if tie
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         log('Its a tie. Both players chose', humanChoice);
+        return 0;
     }
     else if (humanChoice === 'rock'){
         if (computerChoice === 'scissors'){
             log(`You win! ${humanChoice} beats ${computerChoice}`);
-            humanScore++;
+            // humanScore++;
+            return 1;
         }
         else {
             log(`You lose! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
+            // computerScore++;
+            return -1;
         }   
     }
     else if (humanChoice === 'paper'){
         if (computerChoice === 'rock'){
             log(`You win! ${humanChoice} beats ${computerChoice}`);
-            humanScore++;    
+            // humanScore++;    
+            return 1;
         }
         else {
             log(`You lose! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
+            // computerScore++;
+            return -1;
         }
     }
     else if (humanChoice === 'scissors'){
         if (computerChoice === 'paper'){
             log(`You win! ${humanChoice} beats ${computerChoice}`);
-            humanScore++;
+            // humanScore++;
+            return 1;
         }
         else {
             log(`You lose! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
+            // computerScore++;
+            return -1;
         } 
     }
     else
         throw HowDidYouGetHere('This else should never run');
+}
+
+// plays the game x times
+function playGame(times = 1){
+    let humanScore = 0;
+    let computerScore = 0;
+
+
+    while (times > 0){
+        times--;
+
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+
+        let result = playRound(humanChoice, computerChoice);
+        
+        // update appropriate score
+        if (result == 1)
+            humanScore++;
+        else if (result == -1)
+            computerScore++;
+        
+        // do nothing if tie
+        }
+
+    log(`Games finished. You won ${humanScore} and lost ${computerScore} times.`);
 }
