@@ -3,6 +3,10 @@ let log = console.log;
 log("Hello World");
 
 
+let humanScore = 0;
+let computerScore = 0;
+
+
 // returns option for computer player
 function getComputerChoice() {
     let random = 0;
@@ -21,3 +25,17 @@ function getComputerChoice() {
         throw HowDidYouGetHere('This else should never run');
 }
 
+// returns option for human player
+function getHumanChoice() {
+    let trys = 3;
+    let userChoice = prompt('Lets play rock, paper, scissors. What option will you choose?','rock');
+    
+    while (userChoice !== 'rock' && userChoice !== 'paper' && userChoice !== 'scissors') {
+        userChoice = prompt('Sorry, invalid choice. Please choose: "rock", "paper", or "scissors"');
+    }
+
+    log('userChoice =',userChoice);
+    
+    return userChoice;
+
+}
